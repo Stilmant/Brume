@@ -1,93 +1,255 @@
-# Brume - Fausse Intelligence Artificielle
+<div align="center">
 
-## Description
-Brume est une application web interactive qui simule une intelligence artificielle. Elle permet aux utilisateurs anonymes de poser des questions et de recevoir des réponses en temps réel. Les administrateurs peuvent gérer les sessions utilisateur et répondre directement aux questions via une interface dédiée.
+# 🌫️ Brume
 
-Ce projet est conçu pour être simple et éducatif, idéal pour apprendre les bases du développement web avec Node.js, Express, et Socket.IO.
+### Assistant IA simulé avec interface en temps réel
 
----
+[![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-5.1-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Socket.io](https://img.shields.io/badge/Socket.io-4.8-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
+[![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)](LICENSE)
 
-## Fonctionnalités
+[Démo](#-démo) • [Installation](#-installation-rapide) • [Fonctionnalités](#-fonctionnalités) • [Documentation](#-documentation)
 
-### Côté Utilisateur
-- Interface de chat moderne et intuitive.
-- Animation simulant une réflexion de l'IA.
-- Envoi de questions anonymes.
-
-### Côté Administrateur
-- Liste des utilisateurs connectés.
-- Notifications lorsqu'un utilisateur pose une question.
-- Interface de chat pour répondre aux utilisateurs.
+</div>
 
 ---
 
-## Architecture
+## 📖 Description
 
-### Technologies Utilisées
-- **Node.js** : Serveur backend.
-- **Express** : Framework pour gérer les routes et servir les fichiers statiques.
-- **Socket.IO** : Gestion des interactions en temps réel entre utilisateurs et administrateurs.
-- **HTML/CSS** : Interfaces utilisateur et administrateur.
+**Brume** est une application web interactive qui simule une intelligence artificielle conversationnelle. Les utilisateurs peuvent poser des questions anonymement et recevoir des réponses en temps réel, fournies discrètement par des administrateurs humains via une interface dédiée.
 
-### Structure du Projet
-```
-/
-|-- public/
-|   |-- user.html       # Interface utilisateur
-|   |-- admin.html      # Interface administrateur
-|-- server.js           # Serveur Node.js
-|-- package.json        # Dépendances et configuration
-```
+Ce projet éducatif démontre les concepts fondamentaux du développement web moderne : communication temps réel avec WebSocket, architecture client-serveur, et gestion d'états distribués.
+
+### 🎯 Cas d'usage
+
+- **Pédagogique** : Apprendre Node.js, Express et Socket.IO
+- **Prototype** : Tester un concept de chat avec support humain déguisé
+- **Démonstration** : Illustrer les interactions temps réel dans une application web
 
 ---
 
-## Installation et Lancement
+## ✨ Fonctionnalités
+
+### 👤 Interface Utilisateur
+
+- 🎨 Design moderne inspiré de ChatGPT (thème sombre)
+- 💬 Chat en temps réel avec sessions anonymes
+- ⏳ Animation de "réflexion" pendant l'attente
+- 📱 Interface responsive et intuitive
+- 🆔 Identifiant de session unique généré automatiquement
+
+### 👨‍💼 Interface Administrateur
+
+- 📋 Liste des sessions utilisateur actives
+- 🔔 Notifications de nouveaux messages (badge "NEW")
+- 💬 Vue complète de l'historique des conversations
+- ⚡ Réponse en temps réel avec envoi par Enter
+- 🎯 Interface multi-onglets pour gérer plusieurs utilisateurs
+
+---
+
+## 🚀 Installation Rapide
 
 ### Prérequis
-- Node.js installé sur votre machine.
 
-### Étapes
-1. Clonez ce dépôt :
+- [Node.js](https://nodejs.org/) version 18 ou supérieure
+- npm (inclus avec Node.js)
+
+### Étapes d'installation
+
+1. **Cloner le dépôt**
    ```bash
-   git clone <url-du-repo>
+   git clone https://github.com/Stilmant/Brume.git
+   cd Brume
    ```
-2. Installez les dépendances :
+
+2. **Installer les dépendances**
    ```bash
    npm install
    ```
-3. Lancez le serveur :
+
+3. **Lancer le serveur**
    ```bash
    node server.js
    ```
-4. Ouvrez un navigateur et accédez à :
-   - `http://localhost:3000/user.html` pour l'interface utilisateur.
-   - `http://localhost:3000/admin.html` pour l'interface administrateur.
+
+4. **Accéder à l'application**
+   - Interface utilisateur : [http://localhost:3000/user.html](http://localhost:3000/user.html)
+   - Interface admin : [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
+
+Le serveur démarre sur le port **3000** par défaut.
 
 ---
 
-## Explication du Code
+## 🎬 Démo
 
-### `server.js`
-- Configure un serveur Express pour servir les fichiers statiques.
-- Utilise Socket.IO pour gérer les événements en temps réel.
-- Stocke les sessions utilisateur en mémoire.
+### Interface Utilisateur
+L'utilisateur converse avec "Brume" via une interface moderne et épurée.
 
-### `public/user.html`
-- Interface utilisateur avec un champ pour poser des questions.
-- Affiche les réponses de l'IA avec une animation de réflexion.
+```
+┌─────────────────────────────────────────┐
+│  🌫️ Brume          Session: abc123def  │
+├─────────────────────────────────────────┤
+│                                         │
+│  [V] Bonjour Brume !                   │
+│                                         │
+│      [B] Bonjour ! Comment puis-je     │
+│          vous aider aujourd'hui ?       │
+│                                         │
+│  [V] Quelle est la météo ?             │
+│                                         │
+│      [B] ● ● ●  (réflexion...)         │
+│                                         │
+├─────────────────────────────────────────┤
+│ Envoyez un message à Brume...  [Envoyer]│
+└─────────────────────────────────────────┘
+```
 
-### `public/admin.html`
-- Liste les utilisateurs connectés.
-- Permet aux administrateurs de répondre aux questions.
+### Interface Administrateur
+Les admins voient toutes les sessions et peuvent répondre instantanément.
+
+```
+┌──────────────┬────────────────────────────┐
+│ 🌫️ Brume     │ Conversation: abc123def    │
+│ [ADMIN]      │                            │
+├──────────────┤  [U] Bonjour Brume !       │
+│ Sessions     │                            │
+│              │      [B] Bonjour ! Comment │
+│ ● abc123def  │          puis-je vous...   │
+│   NEW        │                            │
+│   2 messages │  [U] Quelle est la météo ? │
+│              │                            │
+│ ○ xyz789abc  │                            │
+│   1 message  │                            │
+│              ├────────────────────────────┤
+│              │ Réponse... 🔹 [Envoyer]   │
+└──────────────┴────────────────────────────┘
+```
 
 ---
 
-## Améliorations Futures
-- Ajouter une base de données (SQLite) pour stocker les sessions.
-- Permettre aux utilisateurs de se reconnecter à leur session.
-- Ajouter des fonctionnalités de modération pour les administrateurs.
+## 🏗️ Architecture
+
+### Technologies
+
+| Technologie | Version | Rôle |
+|------------|---------|------|
+| **Node.js** | 20+ | Runtime JavaScript côté serveur |
+| **Express** | 5.1 | Framework web minimaliste |
+| **Socket.IO** | 4.8 | Communication bidirectionnelle temps réel |
+| **UUID** | 13.0 | Génération d'identifiants uniques |
+
+### Structure du projet
+
+```
+Brume/
+├── public/
+│   ├── user.html      # Interface utilisateur (chat)
+│   └── admin.html     # Interface administrateur
+├── server.js          # Serveur Node.js + Socket.IO
+├── package.json       # Dépendances et configuration
+└── README.md          # Documentation
+```
+
+### Flux de communication
+
+```mermaid
+graph LR
+    A[Utilisateur] -->|WebSocket| B[Server Node.js]
+    B -->|Socket.IO| C[Admin]
+    C -->|Réponse| B
+    B -->|Réponse| A
+```
+
+1. L'utilisateur se connecte et reçoit un ID de session unique
+2. Les messages sont transmis en temps réel via Socket.IO
+3. L'admin reçoit une notification et peut répondre
+4. La réponse est envoyée instantanément à l'utilisateur
 
 ---
 
-## Auteur
-Ce projet a été créé pour apprendre et enseigner les bases du développement web avec Node.js. Profitez-en pour explorer, expérimenter et vous amuser !
+## 📚 Documentation
+
+### Fichiers principaux
+
+#### `server.js`
+Serveur Express avec gestion Socket.IO pour :
+- Servir les fichiers statiques (`public/`)
+- Gérer les connexions utilisateur/admin
+- Router les messages entre sessions
+- Stocker l'historique en mémoire (Map)
+
+#### `public/user.html`
+Interface utilisateur avec :
+- Design moderne (thème sombre)
+- Gestion des messages et avatars
+- Animation de saisie (typing indicator)
+- Auto-scroll et responsive design
+
+#### `public/admin.html`
+Panel d'administration avec :
+- Liste dynamique des sessions
+- Badges de notification
+- Vue détaillée des conversations
+- Champ de réponse avec raccourcis clavier
+
+### Configuration
+
+Le serveur écoute sur le port `3000`. Pour changer le port :
+
+```javascript
+// Dans server.js, ligne finale
+httpServer.listen(3000, () => {
+  console.log("http://localhost:3000");
+});
+```
+
+---
+
+## 🔮 Améliorations Futures
+
+- [ ] 💾 Persistance des données avec SQLite/MongoDB
+- [ ] 🔐 Authentification admin avec mots de passe
+- [ ] 🔄 Reconnexion automatique des utilisateurs
+- [ ] 📊 Statistiques et analytics (temps de réponse, nombre de sessions)
+- [ ] 🎨 Thèmes personnalisables (clair/sombre)
+- [ ] 🌍 Internationalisation (i18n)
+- [ ] 🤖 Intégration optionnelle d'une vraie IA (OpenAI API)
+- [ ] 📱 Application mobile (React Native)
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+
+1. 🍴 Fork le projet
+2. 🌿 Créer une branche (`git checkout -b feature/amelioration`)
+3. 💾 Commit vos changements (`git commit -m 'Ajout de...'`)
+4. 📤 Push vers la branche (`git push origin feature/amelioration`)
+5. 🔀 Ouvrir une Pull Request
+
+---
+
+## 📝 Licence
+
+Ce projet est sous licence **ISC** - libre d'utilisation pour l'apprentissage et la modification.
+
+---
+
+## 👨‍💻 Auteur
+
+Créé avec ❤️ pour apprendre et enseigner les bases du développement web moderne avec Node.js.
+
+**Projet pédagogique** - Parfait pour comprendre Socket.IO et les applications temps réel !
+
+---
+
+<div align="center">
+
+**⭐ Si ce projet vous a aidé, n'hésitez pas à lui donner une étoile !**
+
+[🐛 Signaler un bug](https://github.com/Stilmant/Brume/issues) • [💡 Suggérer une fonctionnalité](https://github.com/Stilmant/Brume/issues)
+
+</div>
