@@ -31,6 +31,14 @@ Ce projet éducatif démontre les concepts fondamentaux du développement web mo
 
 ---
 
+## Documentation conceptuelle
+Ce projet fait partie d’une réflexion plus large sur la programmation méta-déclarative et le développement AI-native.
+La documentation complète se trouve dans [`/docs/Meta-Declarative-AI-Runtime`](docs/Meta-Declarative-AI-Runtime/).
+
+> Point d’entrée : [Sommaire commun](docs/Meta-Declarative-AI-Runtime/sommaire-commun.md)
+
+---
+
 ## 🤔 Choix du Langage
 
 ### Contexte de la décision
