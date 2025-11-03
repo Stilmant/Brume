@@ -2,7 +2,11 @@
 <html>
 <head>
   <meta charset='utf-8'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1'/>
   <title>Brume - Administration</title>
+  <link rel='icon' type='image/svg+xml' href='brume-thought.min.svg'/>
+  <link rel='alternate icon' type='image/png' sizes='96x96' href='brume-thought.png'/>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css'/>
   <link rel='stylesheet' href='styles/common.css'/>
   <link rel='stylesheet' href='styles/admin.css'/>
 </head>
@@ -22,8 +26,8 @@
         <div class='empty-state'><div><p>👈 Sélectionnez une session</p><p style='margin-top:8px;font-size:13px;'>pour voir la conversation</p></div></div>
       </div>
       <div id='send' style='display:none;'>
-        <input id='msg' placeholder='Tapez votre réponse en tant que Brume...'/>
-        <button id='btn'>Envoyer</button>
+        <textarea id='msg' class='chat-input admin-input' placeholder='Tapez votre réponse en tant que Brume...' autocomplete='off'></textarea>
+        <button id='btn' class='send-button admin-button'>Envoyer</button>
       </div>
     </div>
   </div>

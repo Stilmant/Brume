@@ -2,7 +2,7 @@
 
 /* === Thème utilisateur === */
 body {
-  background-color: #343541;
+  background: #343541;
   color: #ececf1;
 }
 
@@ -18,19 +18,16 @@ body {
 
 /* === Badge session === */
 .session-id {
-  font-size: 12px;
-  color: #8e8ea0;
+  font-size: 0.75rem;
+  color: #a1a1aa;
   background: #40414f;
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* === Zone de chat === */
 #chat {
-  gap: 20px;
-}
-
-#chat::-webkit-scrollbar-track {
   background: #343541;
 }
 
@@ -40,52 +37,54 @@ body {
 
 /* === Messages === */
 .message {
-  gap: 16px;
-  padding: 20px;
-  margin: 0 auto;
+  background: #40414f;
+  border-radius: 0.75rem;
+  padding: 1rem;
   width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
 }
 
 .message.user {
-  background: #343541;
+  background: #2f303b;
+  border: 1px solid #565869;
+  margin-left: auto;
 }
 
 .message.ai {
   background: #444654;
+  margin-right: auto;
 }
 
 /* === Avatars === */
 .avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  font-size: 14px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .avatar.user {
   background: #5436da;
+  color: #fff;
 }
 
 /* === Contenu des messages === */
 .message-content {
-  flex: 1;
-  padding-top: 8px;
-  line-height: 1.6;
-  font-size: 15px;
+  color: #f7f7f8;
+  padding-top: 0.125rem;
+  min-width: 0;
 }
 
 /* === Animation de réflexion === */
 .typing {
   display: flex;
-  gap: 4px;
-  padding: 8px 0;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
 }
 
 .typing span {
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   background: #8e8ea0;
-  border-radius: 50%;
+  border-radius: 999px;
   animation: bounce 1.4s infinite ease-in-out;
 }
 
@@ -112,66 +111,94 @@ body {
 
 /* === Zone de saisie === */
 .input-container {
-  padding: 20px;
-  background: #343541;
+  background: #202123;
   border-top: 1px solid #4d4d4f;
 }
 
 .input-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
+  width: 100%;
 }
 
 #f {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
   background: #40414f;
-  border-radius: 12px;
-  padding: 12px 16px;
+  border: 1px solid #565869;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
 }
 
-#q {
-  flex: 1;
-  background: transparent;
-  border: none;
+.user-input {
+  border: 1px solid #565869;
+  background: #343541;
   color: #ececf1;
-  font-size: 15px;
-  resize: none;
-  max-height: 200px;
 }
 
-#q::placeholder {
+/* Assure l'accessibilité du champ de saisie */
+.user-input[aria-label] {
+  /* Pas de styles supplémentaires requis, mais ce sélecteur documente l'accessibilité */
+}
+
+.user-input::placeholder {
   color: #8e8ea0;
 }
 
 /* === Bouton d'envoi === */
-button {
+.user-button {
+  width: 100%;
   background: #19c37d;
-  margin-left: 12px;
+  color: #052d1a;
 }
 
-button:hover {
-  background: #1a9f6a;
+.user-button:hover,
+.user-button:focus-visible {
+  background: #15a96c;
 }
 
-button:disabled {
+.user-button:disabled {
   background: #3f3f46;
+  color: #b5b5c1;
 }
 
-/* === Écran d'accueil === */
 .welcome {
   text-align: center;
-  padding: 40px 20px;
-  color: #8e8ea0;
+  padding: 2.5rem 1rem;
+  color: #b5b5c1;
 }
 
 .welcome h2 {
-  font-size: 28px;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: #ececf1;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .welcome p {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
+
+@media (min-width: 600px) {
+  #f {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .user-button {
+    width: auto;
+    justify-self: end;
+    min-width: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .message {
+    max-width: 48rem;
+    padding: 1.25rem;
+  }
+
+  #f {
+    padding: 1rem 1.25rem;
+  }
+}
+

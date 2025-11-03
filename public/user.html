@@ -2,7 +2,11 @@
 <html>
 <head>
   <meta charset='utf-8'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1'/>
   <title>Brume - Assistant IA</title>
+  <link rel='icon' type='image/svg+xml' href='brume-thought.min.svg'/>
+  <link rel='alternate icon' type='image/png' sizes='96x96' href='brume-thought.png'/>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css'/>
   <link rel='stylesheet' href='styles/common.css'/>
   <link rel='stylesheet' href='styles/user.css'/>
 </head>
@@ -20,8 +24,8 @@
   <div class='input-container'>
     <div class='input-wrapper'>
       <form id='f'>
-        <input id='q' placeholder='Envoyez un message à Brume...' autocomplete='off'/>
-        <button type='submit'>Envoyer</button>
+        <textarea id='q' class='chat-input user-input' placeholder='Envoyez un message à Brume...' autocomplete='off'></textarea>
+        <button type='submit' class='send-button user-button'>Envoyer</button>
       </form>
     </div>
   </div>
