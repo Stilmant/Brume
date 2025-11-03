@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🌫️ Brume
+<img src="public/brume-thought.png" alt="Brume" width="98" height="98" style="margin-bottom:8px;" />
+
+# Brume
 
 ### Assistant IA simulé avec interface en temps réel
 
@@ -250,8 +252,9 @@ Les admins voient toutes les sessions et peuvent répondre instantanément.
 Brume/
 ├── public/
 │   ├── styles/
-│   │   ├── user.css       # Styles interface utilisateur
-│   │   └── admin.css      # Styles interface admin
+│   │   ├── common.css     # Styles communs partagés
+│   │   ├── user.css       # Styles spécifiques utilisateur
+│   │   └── admin.css      # Styles spécifiques admin
 │   ├── scripts/
 │   │   ├── user.js        # Logique client utilisateur
 │   │   └── admin.js       # Logique client admin
@@ -297,17 +300,32 @@ Structure HTML de l'interface utilisateur (minimaliste, charge les styles et scr
 #### `public/admin.html`
 Structure HTML de l'interface admin (minimaliste, charge les styles et scripts externes)
 
+#### `public/styles/common.css`
+Styles partagés entre les deux interfaces :
+- Reset CSS et base commune
+- Header et logo
+- Avatars (utilisateur, AI, admin)
+- Zone de chat et scrollbars
+- Badges et boutons
+- États vides
+
+**Avantage** : Évite la duplication, facilite la maintenance et garantit une cohérence visuelle.
+
 #### `public/styles/user.css`
-Tous les styles pour l'interface utilisateur :
-- Design moderne (thème sombre inspiré ChatGPT)
-- Animations (typing indicator, hover effects)
-- Responsive design et scrollbar personnalisée
+Styles spécifiques à l'interface utilisateur :
+- Thème sombre (#343541)
+- Messages et bulles de chat
+- Animation de réflexion (typing indicator)
+- Zone de saisie et bouton d'envoi vert
+- Écran d'accueil
 
 #### `public/styles/admin.css`
-Tous les styles pour l'interface admin :
+Styles spécifiques à l'interface admin :
+- Thème plus sombre (#1e1e1e)
 - Sidebar pour liste des sessions
 - Layout en deux colonnes
-- Badges et notifications visuelles
+- Bulles de message alignées (user à gauche, admin à droite)
+- Zone d'envoi avec bouton violet
 
 #### `public/scripts/user.js`
 Logique client utilisateur :

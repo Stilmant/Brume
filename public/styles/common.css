@@ -1,0 +1,158 @@
+/* common.css - Styles communs partagés entre les interfaces Brume */
+
+/* === Reset et base === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Header === */
+.header {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Logo === */
+.logo {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(90deg, #667eea 0%, #aee2ff 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(118, 75, 162, 0.1);
+  overflow: hidden;
+  margin: 0 8px 0 0;
+}
+
+.logo img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: auto;
+}
+
+/* === Avatar === */
+.avatar {
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.avatar.user {
+  color: white;
+}
+
+.avatar.ai,
+.avatar.admin {
+  background: linear-gradient(90deg, #667eea 0%, #aee2ff 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.avatar.ai img,
+.avatar.admin img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: auto;
+}
+
+/* === Chat zone === */
+#chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+/* === Messages === */
+.message {
+  display: flex;
+  gap: 12px;
+  max-width: 800px;
+}
+
+/* === Scrollbar pour listes === */
+#list::-webkit-scrollbar {
+  width: 8px;
+}
+
+#list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+/* === Badges === */
+.badge {
+  background: #dc2626;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* === Boutons === */
+button {
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+  padding: 10px 16px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* === Inputs === */
+input,
+textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+/* === États vides === */
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  text-align: center;
+  padding: 40px;
+}
