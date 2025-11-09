@@ -152,6 +152,8 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
 - ⏳ Animation de "réflexion" pendant l'attente
 - 📱 Interface responsive et intuitive
 - 🆔 Identifiant de session unique généré automatiquement
+- 🔄 Reconnexion automatique avec restauration de l'historique
+- 💾 Conservation des conversations dans une base de données SQLite
 
 ### 👨‍💼 Interface Administrateur
 
@@ -253,6 +255,7 @@ Les admins voient toutes les sessions et peuvent répondre instantanément.
 | **Express** | 5.1 | Framework web minimaliste |
 | **Socket.IO** | 4.8 | Communication bidirectionnelle temps réel |
 | **UUID** | 13.0 | Génération d'identifiants uniques |
+| **Better-SQLite3** | 11+ | Base de données SQLite pour la persistance |
 
 ### Structure du projet
 
@@ -264,12 +267,14 @@ Brume/
 │   │   ├── user.css       # Styles spécifiques utilisateur
 │   │   └── admin.css      # Styles spécifiques admin
 │   ├── scripts/
-│   │   ├── user.js        # Logique client utilisateur
+│   │   ├── user.js        # Logique client utilisateur (avec reconnexion)
 │   │   └── admin.js       # Logique client admin
 │   ├── user.html          # Interface utilisateur (structure)
 │   ├── admin.html         # Interface administrateur (structure)
 │   └── brume-thought.svg  # Logo Brume
 ├── server.js              # Serveur Node.js + Socket.IO
+├── db.js                  # Module de gestion SQLite
+├── brume.db               # Base de données SQLite (générée automatiquement)
 ├── package.json           # Dépendances et configuration
 └── README.md              # Documentation
 ```
@@ -300,7 +305,15 @@ Serveur Express avec gestion Socket.IO pour :
 - Servir les fichiers statiques (`public/`)
 - Gérer les connexions utilisateur/admin
 - Router les messages entre sessions
-- Stocker l'historique en mémoire (Map)
+- Stocker l'historique dans SQLite via `db.js`
+- Gérer la reconnexion des utilisateurs avec leur ID de session
+
+#### `db.js`
+Module de gestion de la base de données SQLite :
+- Création automatique des tables (sessions, messages)
+- Fonctions CRUD pour les sessions et messages
+- Gestion des sessions avec timestamps et statuts
+- Nettoyage des sessions inactives
 
 #### `public/user.html`
 Structure HTML de l'interface utilisateur (minimaliste, charge les styles et scripts externes)
@@ -337,7 +350,9 @@ Styles spécifiques à l'interface admin :
 
 #### `public/scripts/user.js`
 Logique client utilisateur :
-- Connexion Socket.IO
+- Connexion Socket.IO avec gestion de reconnexion
+- Stockage de l'ID de session dans localStorage
+- Restauration automatique de l'historique après reconnexion
 - Gestion des messages (envoi, réception, affichage)
 - Animation de réflexion (typing indicator)
 - Interactions utilisateur (formulaire, auto-scroll)
@@ -360,13 +375,43 @@ httpServer.listen(3000, () => {
 });
 ```
 
+### 💾 Persistance des données
+
+Brume utilise **SQLite** (via `better-sqlite3`) pour stocker :
+- Les sessions utilisateur avec ID unique
+- L'historique complet des conversations
+- Les timestamps de création et dernière activité
+- Le statut "non lu" pour les notifications admin
+
+**Base de données** : `brume.db` (générée automatiquement au premier lancement)
+
+**Avantages** :
+- ✅ Pas besoin de serveur de base de données externe
+- ✅ Persistance après redémarrage du serveur
+- ✅ Performances excellentes pour des milliers de sessions
+- ✅ Fichier unique facile à sauvegarder
+
+> 💡 **Comment ça marche ?** Consultez [EXPLICATION-DB.md](EXPLICATION-DB.md) pour comprendre en détail quand et comment la base de données est créée.
+
+### 🔄 Reconnexion automatique
+
+Les utilisateurs sont automatiquement reconnectés à leur session :
+
+1. **Première visite** : Un ID de session unique est généré et stocké dans `localStorage`
+2. **Visites suivantes** : L'ID est envoyé au serveur qui restaure l'historique complet
+3. **Changement de navigateur** : Nouvelle session (localStorage est local au navigateur)
+
+**Indicateur visuel** : Le message `(reconnecté)` apparaît après l'ID de session.
+
+**Nettoyage** : Les sessions inactives depuis 30+ jours peuvent être supprimées (fonction `cleanOldSessions()` dans `db.js`).
+
 ---
 
 ## 🔮 Améliorations Futures
 
-- [ ] 💾 Persistance des données avec SQLite/MongoDB
+- [x] 💾 Persistance des données avec SQLite/MongoDB
+- [x] 🔄 Reconnexion automatique des utilisateurs
 - [ ] 🔐 Authentification admin avec mots de passe
-- [ ] 🔄 Reconnexion automatique des utilisateurs
 - [ ] 📊 Statistiques et analytics (temps de réponse, nombre de sessions)
 - [ ] 🎨 Thèmes personnalisables (clair/sombre)
 - [ ] 🌍 Internationalisation (i18n)

@@ -1,6 +1,15 @@
 // user.js - Logique client pour l'interface utilisateur Brume
 
-const socket = io({ query: { role: 'user' } });
+// Récupérer l'ID de session depuis localStorage (pour la reconnexion)
+const savedSessionId = localStorage.getItem('brume_session_id');
+
+const socket = io({
+  query: {
+    role: 'user',
+    sessionId: savedSessionId || ''
+  }
+});
+
 const chat = document.getElementById('chat');
 const form = document.getElementById('f');
 const input = document.getElementById('q');
@@ -8,6 +17,7 @@ const sessionIdEl = document.getElementById('sessionId');
 
 let typingEl = null;
 let firstMessage = true;
+let currentSessionId = null;
 
 /**
  * Ajoute un message dans la zone de chat
@@ -93,8 +103,32 @@ function hideTyping() {
 }
 
 // Événement : Réception de l'ID de session
-socket.on('welcome', ({ id }) => {
-  sessionIdEl.textContent = 'Session: ' + id;
+socket.on('welcome', ({ id, reconnected }) => {
+  currentSessionId = id;
+  localStorage.setItem('brume_session_id', id);
+
+  if (reconnected) {
+    sessionIdEl.textContent = 'Session: ' + id + ' (reconnecté)';
+    // L'historique sera restauré via l'événement restore_history
+  } else {
+    sessionIdEl.textContent = 'Session: ' + id;
+  }
+});
+
+// Événement : Restauration de l'historique lors de la reconnexion
+socket.on('restore_history', ({ messages }) => {
+  if (messages && messages.length > 0) {
+    chat.innerHTML = ''; // Effacer le message d'accueil
+    firstMessage = false;
+
+    messages.forEach(msg => {
+      if (msg.from === 'user') {
+        addMessage('user', msg.text);
+      } else if (msg.from === 'admin') {
+        addMessage('ai', msg.text);
+      }
+    });
+  }
 });
 
 // Événement : Réception d'une réponse de l'admin
