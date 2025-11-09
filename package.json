@@ -1,14 +1,32 @@
 {
-  "name": "faux-ia",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "brume",
+  "version": "2.1.0",
+  "description": "Assistant IA simulé avec interface en temps réel - Chat avec persistance SQLite et reconnexion automatique",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node test-db.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "chat",
+    "websocket",
+    "socket.io",
+    "express",
+    "sqlite",
+    "real-time",
+    "ai-simulation",
+    "educational"
+  ],
+  "author": "Brume Contributors",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stilmant/Brume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Stilmant/Brume/issues"
+  },
+  "homepage": "https://github.com/Stilmant/Brume#readme",
   "type": "module",
   "dependencies": {
     "better-sqlite3": "^12.4.1",

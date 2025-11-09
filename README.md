@@ -11,7 +11,7 @@
 [![Socket.io](https://img.shields.io/badge/Socket.io-4.8-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
 [![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)](LICENSE)
 
-[Démo](#-démo) • [Installation](#-installation-rapide) • [Fonctionnalités](#-fonctionnalités) • [Documentation](#-documentation)
+[🚀 Quick Start](QUICK-START.md) • [Démo](#-démo) • [Installation](#-installation-rapide) • [Fonctionnalités](#-fonctionnalités) • [Documentation](#-documentation)
 
 </div>
 
@@ -157,11 +157,11 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
 
 ### 👨‍💼 Interface Administrateur
 
-- 📋 Liste des sessions utilisateur actives
+- 📋 Liste des sessions utilisateur actives (panneau latéral gauche)
 - 🔔 Notifications de nouveaux messages (badge "NEW")
-- 💬 Vue complète de l'historique des conversations
+- 💬 Vue complète de l'historique des conversations (panneau de chat à droite)
 - ⚡ Réponse en temps réel avec envoi par Enter
-- 🎯 Interface multi-onglets pour gérer plusieurs utilisateurs
+- 🎯 Interface à deux panneaux pour gérer plusieurs utilisateurs simultanément
 
 ---
 
@@ -187,7 +187,8 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
 
 3. **Lancer le serveur**
    ```bash
-   node server.js
+   npm start
+   # ou directement : node server.js
    ```
 
 4. **Accéder à l'application**
@@ -195,6 +196,15 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
    - Interface admin : [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
 
 Le serveur démarre sur le port **3000** par défaut.
+
+### 🧪 Tester la base de données
+
+```bash
+npm test
+# ou directement : node test-db.js
+```
+
+Ce script vérifie que la persistance SQLite fonctionne correctement.
 
 ---
 
@@ -414,11 +424,64 @@ Les utilisateurs sont automatiquement reconnectés à leur session :
 - [ ] 👥 Support multi-admin avec attribution de sessions
 - [ ] 🔐 Authentification admin avec mots de passe
 - [ ] 🧹 Nettoyage automatique périodique des vieilles sessions
-- [ ] 📊 Statistiques et analytics (temps de réponse, nombre de sessions)
+- [ ] �️ Rate limiting et protection contre les abus
+- [ ] �📊 Statistiques et analytics (temps de réponse, nombre de sessions)
 - [ ] 🎨 Thèmes personnalisables (clair/sombre)
 - [ ] 🌍 Internationalisation (i18n)
 - [ ] 🤖 Intégration optionnelle d'une vraie IA (OpenAI API)
 - [ ] 📱 Application mobile (React Native)
+
+---
+
+## ⚠️ Notes de Sécurité
+
+### 🚨 Pour une utilisation en production
+
+**Ce projet est conçu à des fins éducatives et de démonstration.** Pour un déploiement en production, implémentez les mesures de sécurité suivantes :
+
+#### 1. Authentification Admin
+- ⚠️ **Actuellement** : Aucune protection sur `/admin.html`
+- ✅ **Recommandation** : Ajouter une authentification (Basic Auth, JWT, OAuth)
+- 💡 **Solution rapide** : Utiliser une variable d'environnement comme secret partagé
+
+```javascript
+// Exemple simple dans server.js
+app.use('/admin.html', (req, res, next) => {
+  const auth = req.headers.authorization;
+  if (auth === `Bearer ${process.env.ADMIN_SECRET}`) {
+    next();
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+});
+```
+
+#### 2. Rate Limiting
+- ⚠️ **Actuellement** : Aucune limite sur les messages
+- ✅ **Recommandation** : Implémenter `express-rate-limit` pour prévenir les abus
+- 💡 **Package** : `npm install express-rate-limit`
+
+#### 3. Validation des entrées
+- ⚠️ **Actuellement** : Validation minimale (trim uniquement)
+- ✅ **Recommandation** : Valider longueur, contenu, filtrer HTML/scripts
+- 💡 **Package** : `express-validator` ou `joi`
+
+#### 4. HTTPS en production
+- ⚠️ **Actuellement** : HTTP seulement
+- ✅ **Recommandation** : Utiliser HTTPS avec certificat SSL/TLS
+- 💡 **Solution** : Reverse proxy (Nginx, Caddy) ou Cloudflare
+
+#### 5. Variables d'environnement
+- ⚠️ **Actuellement** : Port et config en dur
+- ✅ **Recommandation** : Utiliser `.env` avec `dotenv`
+- 💡 **Fichier** : `.env` avec `PORT`, `ADMIN_SECRET`, `DATABASE_PATH`
+
+### ✅ Sécurité actuelle (OK pour démo)
+
+- ✅ SQLite avec préparation des requêtes (prévention SQL injection)
+- ✅ Validation de base des IDs de session
+- ✅ Pas de stockage de données sensibles
+- ✅ CORS géré par Socket.IO
 
 ---
 
