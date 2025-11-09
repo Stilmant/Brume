@@ -171,18 +171,6 @@ Vérifie :
 
 ---
 
-## 🔮 Prochaines étapes possibles
-
-- [ ] Authentification admin avec mot de passe
-- [ ] Nettoyage automatique périodique des vieilles sessions
-- [ ] Export des conversations en JSON/CSV
-- [ ] Statistiques détaillées (temps de réponse, messages par jour, etc.)
-- [ ] Chiffrement des messages sensibles
-- [ ] Support multi-admin avec attribution de sessions
-- [ ] API REST pour accéder aux données
-
----
-
 ## 💡 Notes importantes
 
 1. **localStorage** : Les données sont locales au navigateur. Si l'utilisateur change de navigateur ou efface les données, une nouvelle session sera créée.

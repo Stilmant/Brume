@@ -411,7 +411,9 @@ Les utilisateurs sont automatiquement reconnectés à leur session :
 
 - [x] 💾 Persistance des données avec SQLite/MongoDB
 - [x] 🔄 Reconnexion automatique des utilisateurs
+- [ ] 👥 Support multi-admin avec attribution de sessions
 - [ ] 🔐 Authentification admin avec mots de passe
+- [ ] 🧹 Nettoyage automatique périodique des vieilles sessions
 - [ ] 📊 Statistiques et analytics (temps de réponse, nombre de sessions)
 - [ ] 🎨 Thèmes personnalisables (clair/sombre)
 - [ ] 🌍 Internationalisation (i18n)
