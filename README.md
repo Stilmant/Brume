@@ -150,10 +150,11 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
 - 🎨 Design moderne inspiré de ChatGPT (thème sombre)
 - 💬 Chat en temps réel avec sessions anonymes
 - ⏳ Animation de "réflexion" pendant l'attente
-- 📱 Interface responsive et intuitive
+- 📱 Interface responsive et optimisée mobile (iPhone, Android)
 - 🆔 Identifiant de session unique généré automatiquement
 - 🔄 Reconnexion automatique avec restauration de l'historique
 - 💾 Conservation des conversations dans une base de données SQLite
+- 🟢 Basé sur [Pico.css](https://picocss.com/) pour un rendu mobile élégant
 
 ### 👨‍💼 Interface Administrateur
 
@@ -196,6 +197,19 @@ Ce projet démontre qu'il est possible de créer une application fonctionnelle e
    - Interface admin : [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
 
 Le serveur démarre sur le port **3000** par défaut.
+
+### 🟢 Responsive & Mobile
+
+L'interface utilise [Pico.css](https://picocss.com/) pour garantir un affichage optimal sur iPhone, Android et desktop.
+
+- 📱 `<meta name='viewport'>` présent dans chaque HTML
+- 📦 Pico.css chargé via CDN dans `user.html` et `admin.html`
+- 🧪 Testé sur iPhone (Safari, Chrome) et Android
+- 🎨 Composants adaptatifs (boutons, textarea, sidebar)
+
+**Astuce** : Pour tester le rendu mobile, ouvrez l'interface dans Chrome DevTools (Ctrl+Shift+M) et sélectionnez un device iPhone.
+
+---
 
 ### 🧪 Tester la base de données
 

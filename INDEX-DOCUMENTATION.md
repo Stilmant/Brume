@@ -25,12 +25,11 @@
    - Anatomie de brume.db
    - **Durée de lecture** : 15 minutes
 
-4. **[CHANGELOG-PERSISTANCE.md](CHANGELOG-PERSISTANCE.md)**
-   - Liste complète des changements
-   - Modifications de chaque fichier
-   - Structure de la base de données
-   - Flux techniques
-   - **Durée de lecture** : 20 minutes
+4. **[EXPLICATION-DB.md](EXPLICATION-DB.md)**
+     - Explication détaillée avec analogies
+     - Structure de la base de données
+     - FAQ, expériences pratiques
+     - **Durée de lecture** : 15 minutes
 
 ### 🔴 Avancé - Documentation de référence
 
@@ -77,7 +76,7 @@ Test 6 : Inspection de la DB
 ### Pour modifier le code
 
 ```
-CHANGELOG-PERSISTANCE.md
+EXPLICATION-DB.md
      ↓
 Code : db.js (toutes les fonctions)
      ↓
@@ -99,7 +98,6 @@ Code : user.js (reconnexion client)
 
 ### 🔄 Reconnexion automatique
 
-- **CHANGELOG-PERSISTANCE.md** : Section "Comment ça fonctionne"
 - **public/scripts/user.js** : Implémentation client
 - **server.js** : Gestion côté serveur
 - **GUIDE-TEST.md** : Test 2
@@ -115,15 +113,14 @@ Code : user.js (reconnexion client)
 ### 🏗️ Architecture
 
 - **README.md** : Vue d'ensemble
-- **CHANGELOG-PERSISTANCE.md** : Modifications v2.0
-- Structure de la base : Voir CHANGELOG section "Structure de la base de données"
+- Structure de la base : Voir EXPLICATION-DB.md
 
 ---
 
 ## 🔍 Recherche par question
 
 ### "Comment fonctionne la persistance ?"
-→ **EXPLICATION-DB.md** + **CHANGELOG-PERSISTANCE.md**
+→ **EXPLICATION-DB.md**
 
 ### "Quand la base de données est-elle créée ?"
 → **QUAND-DB-CREEE.md** + exécuter **demo-simple.js**
@@ -132,7 +129,7 @@ Code : user.js (reconnexion client)
 → **GUIDE-TEST.md** (Test 2)
 
 ### "Quels fichiers ont été modifiés ?"
-→ **CHANGELOG-PERSISTANCE.md** (section "Fichiers modifiés")
+→ Voir l'historique git ou le README.md
 
 ### "Comment voir les données dans la base ?"
 → **GUIDE-TEST.md** (Test 6) + **EXPLICATION-DB.md** (Expérience 2)
@@ -141,7 +138,7 @@ Code : user.js (reconnexion client)
 → **README.md** (section "Persistance des données")
 
 ### "Comment fonctionne localStorage ?"
-→ **CHANGELOG-PERSISTANCE.md** (section "Reconnexion automatique")
+→ Voir README.md (section reconnexion) ou public/scripts/user.js
 
 ### "La base est-elle recréée à chaque démarrage ?"
 → **QUAND-DB-CREEE.md** (FAQ Q3 et Q4)
@@ -158,7 +155,6 @@ Code : user.js (reconnexion client)
 ### 📃 Moyens (lecture normale)
 - **EXPLICATION-DB.md** (~400 lignes)
 - **GUIDE-TEST.md** (~350 lignes)
-- **CHANGELOG-PERSISTANCE.md** (~300 lignes)
 
 ### 📖 Grands (référence)
 - **README.md** (~400+ lignes)
@@ -180,7 +176,7 @@ Code : user.js (reconnexion client)
 3. Suivre les 6 tests
 
 ### Développer
-1. CHANGELOG-PERSISTANCE.md
+1. EXPLICATION-DB.md
 2. Code : db.js
 3. Code : server.js
 
@@ -204,8 +200,7 @@ Temps : 3 minutes
 1. QUAND-DB-CREEE.md (3 min)
 2. EXPLICATION-DB.md (15 min)
 3. Exécuter demo-simple.js
-4. CHANGELOG-PERSISTANCE.md (20 min)
-Total : ~40 minutes
+Total : ~20 minutes
 ```
 
 ### Je veux tester le système
@@ -218,7 +213,7 @@ Total : ~15 minutes
 
 ### Je veux modifier le code
 ```
-1. CHANGELOG-PERSISTANCE.md (lire "Fichiers modifiés")
+1. EXPLICATION-DB.md (structure et flux)
 2. Lire db.js avec les commentaires
 3. Lire server.js avec les changements
 Total : ~30 minutes

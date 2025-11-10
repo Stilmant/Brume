@@ -14,7 +14,20 @@ npm install
 npm start
 ```
 
+
 **C'est tout !** Ouvrez http://localhost:3000
+
+---
+
+## 🟢 Responsive & Mobile
+
+L'interface Brume utilise [Pico.css](https://picocss.com/) pour un rendu élégant et responsive sur mobile (iPhone, Android) et desktop.
+
+- 📱 `<meta name='viewport'>` dans chaque HTML
+- 🎨 Pico.css chargé via CDN
+- 🧪 Testé sur iPhone/Android
+
+---
 
 ---
 
